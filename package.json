@@ -1,0 +1,35 @@
+{
+  "name": "talks-todolist-api",
+  "version": "0.0.1",
+  "description": "API para servir items da todolist",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Irahe/talks-todolist-api.git"
+  },
+  "keywords": [
+    "api",
+    "node",
+    "npm",
+    "todo-list"
+  ],
+  "author": "Irahe Kasprzykowski",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Irahe/talks-todolist-api/issues"
+  },
+  "homepage": "https://github.com/Irahe/talks-todolist-api#readme",
+  "dependencies": {
+    "knex": "^2.2.0",
+    "restify": "^8.6.1",
+    "sha1": "^1.1.1",
+    "sqlite3": "^5.0.11"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
