@@ -1,3 +1,4 @@
+require('dotenv/config');
 const restify = require('restify');
 const { Database } = require('sqlite3');
 const routeAgregator = require('./src/routes.js');
@@ -30,7 +31,7 @@ const db = require('knex')({
 });
 
 //coloca o server em listenig mode (inicia ele).
-server.listen(8080, function () {
+server.listen(process.env.SV_PORT, function () {
   console.log('%s listening at %s', server.name, server.url);
 });
 

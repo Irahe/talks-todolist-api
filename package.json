@@ -24,6 +24,8 @@
   },
   "homepage": "https://github.com/Irahe/talks-todolist-api#readme",
   "dependencies": {
+    "dotenv": "^16.0.1",
+    "jsonwebtoken": "^8.5.1",
     "knex": "^2.2.0",
     "restify": "^8.6.1",
     "sha1": "^1.1.1",
