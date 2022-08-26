@@ -2,6 +2,15 @@ require('dotenv/config');
 const restify = require('restify');
 const { Database } = require('sqlite3');
 const routeAgregator = require('./src/routes.js');
+const corsMiddleware = require('restify-cors-middleware')
+
+const cors = corsMiddleware({
+   preflightMaxAge: 5, //Optional
+   origins: ['*'],
+   allowHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization"],
+   exposeHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "Authorization"]
+})
+
 
 //cria a instância do servidor restify
 const server = restify.createServer({
@@ -10,6 +19,8 @@ const server = restify.createServer({
 });
 
 //inicializa os plugins no nosso servidor
+server.pre(cors.preflight);
+server.use(cors.actual);
 server.use(restify.plugins.acceptParser(server.acceptable));
 server.use(restify.plugins.queryParser());
 server.use(restify.plugins.bodyParser());
