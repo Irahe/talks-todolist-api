@@ -40,12 +40,17 @@ module.exports = {
       return;
     }
     data.password = sha1(data.password)
-    delete data.type;
+    delete data.type;//evita atualizar o type aqui
 
     const { id } = data;
     if (!id) {
       res.send(404);
     }
+
+    if (req?.requester?.type !== 'op' && Number(req?.requester?.id) !== Number(id)) { //garante o op||self
+      errorController.Unauthorized(res);
+    }
+
     await db('user').where({ id }).update(data);
 
     res.send(201);
@@ -54,9 +59,39 @@ module.exports = {
   async delete(req, res, db) {
     const { id } = req.params;
 
+    if (req?.requester?.type !== 'op' && Number(req?.requester?.id) !== Number(id)) { //garante o op||self
+      errorController.Unauthorized(res);
+    }
+
     await db('user').where({ id }).del();
 
     res.send(204);
 
-  }
+  },
+
+  async op(req, res, db) {
+    const { id } = req?.params;
+
+    if (!id) {
+      res.send(404);
+    }
+    const user = await db('user').where({ id }).first();
+    if (!user) {
+      errorController.NotFound(res);
+    }
+
+    const ops = await db('user').where({ type: 'op' });
+
+    const isTheLast = ops.length === 1;
+    const toggle = user?.type === 'op' ? 'user' : 'op';
+
+    if (!isTheLast && toggle !== 'op') {
+      await db('user').where({ id }).update({ type: toggle });
+      res.send(201);
+    } else {
+      errorController.InvalidRequest('You cannot remove the last OP.', res);
+    }
+
+  },
+
 }

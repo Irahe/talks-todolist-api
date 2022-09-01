@@ -1,4 +1,5 @@
 const userRoutes = require('./routes/userRoutes');
+const listRoutes = require('./routes/listRoutes');
 const authRoutes = require('./routes/authRoutes');
 
 module.exports = (serverParams) => {
@@ -7,5 +8,6 @@ module.exports = (serverParams) => {
 
   //data
   userRoutes(serverParams);
+  listRoutes(serverParams);
 
 }
