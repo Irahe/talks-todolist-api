@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -33,6 +33,7 @@
     "sqlite3": "^5.0.11"
   },
   "devDependencies": {
+    "jest": "^29.0.2",
     "nodemon": "^2.0.19"
   }
 }
