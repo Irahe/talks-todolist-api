@@ -1,5 +1,5 @@
 name: TEST-AND-BUILD-IMAGE
-runs-on: ubuntu-latest|
+runs-on: ubuntu-latest
 
 on:
   workflow_dispatch:
