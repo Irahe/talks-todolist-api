@@ -1,0 +1,17 @@
+name: TEST-AND-BUILD-IMAGE
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14.18
+      - run: npm test
+  falaOlaMundo:
+    steps:
+      - run: echo 'olá mundo'
+  build:
+    steps:
+      - run: docker build -t talk-todo-list-api:latest .
