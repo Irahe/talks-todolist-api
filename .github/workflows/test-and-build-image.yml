@@ -1,5 +1,4 @@
 name: TEST-AND-BUILD-IMAGE
-runs-on: ubuntu-latest
 
 on:
   workflow_dispatch:
@@ -8,6 +7,7 @@ on:
 
 jobs:
   test:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -15,8 +15,11 @@ jobs:
           node-version: 14.18
       - run: npm test
   falaOlaMundo:
+    runs-on: ubuntu-latest
     steps:
       - run: echo 'olá mundo'
   build:
+    runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - run: docker build -t talk-todo-list-api:latest .
