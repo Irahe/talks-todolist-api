@@ -24,9 +24,10 @@ module.exports = {
     let data = req?.body;
     data.user_id = ownerId;
 
-    await db('list').insert(data);
+    const insertedItem = await db('list').insert(data);
 
-    res.send(201);
+
+    res.send(201, { ...insertedItem });
   },
 
   async update(req, res, db) {
@@ -67,9 +68,12 @@ module.exports = {
       errorController.Unauthorized(res);
     }
 
-    await db('item').insert({ ...data, list_id: id });
+    const [itemId] = await db('item').insert({ ...data, list_id: id });
 
-    res.send(201);
+    const insertedItem = await db('item').where({ id: itemId }).first();
+
+
+    res.send(201, { ...insertedItem });
   },
 
   async updateItem(req, res, db) {
@@ -102,6 +106,5 @@ module.exports = {
 
     res.send(201);
   },
-
 
 }
