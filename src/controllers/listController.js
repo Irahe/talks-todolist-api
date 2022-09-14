@@ -59,7 +59,6 @@ module.exports = {
   async addItem(req, res, db) {
     const ownerId = req?.requester?.id;
     let data = req?.body;
-    data.user_id = ownerId;
     const { id } = req?.params;
 
     const list = await db('list').where({ id, user_id: ownerId }).first();
@@ -76,7 +75,6 @@ module.exports = {
   async updateItem(req, res, db) {
     const ownerId = req?.requester?.id;
     let data = req?.body;
-    data.user_id = ownerId;
     const { id } = req?.params;
 
     const list = await db('list').where({ id, user_id: ownerId }).first();
@@ -92,7 +90,6 @@ module.exports = {
 
   async removeItem(req, res, db) {
     const ownerId = req?.requester?.id;
-    data.user_id = ownerId;
     const { id, item_id } = req?.params;
 
     const list = await db('list').where({ id, user_id: ownerId }).first();
@@ -106,10 +103,5 @@ module.exports = {
     res.send(201);
   },
 
-
-  //DEVER DE CASA
-
-  //Criar cada tora das listas no insomnia baseando-se no modelo de banco em anexo
-  //Verifique os campos necessários e execute rota por rota em mais de um usuário.
 
 }

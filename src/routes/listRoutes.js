@@ -7,7 +7,7 @@ module.exports = ({ server, db }) => {
   server.get('/lists/', async function (req, res) {
     req.requester = await authController.verifyToken(req, res, db, 'user');
     if (req.requester) {
-      userController.getAll(req, res, db).catch((error) => {
+      listController.getAll(req, res, db).catch((error) => {
         errorController.InternalServerError(error, res);
       });
     }
@@ -15,7 +15,7 @@ module.exports = ({ server, db }) => {
   server.get('/list/:id', async function (req, res) {
     req.requester = await authController.verifyToken(req, res, db, 'user');
     if (req.requester) {
-      userController.get(req, res, db).catch((error) => {
+      listController.get(req, res, db).catch((error) => {
         errorController.InternalServerError(error, res);
       });
     }
@@ -23,7 +23,7 @@ module.exports = ({ server, db }) => {
   server.post('/lists/', async function (req, res) {
     req.requester = await authController.verifyToken(req, res, db, 'user');
     if (req.requester) {
-      userController.create(req, res, db).catch((error) => {
+      listController.create(req, res, db).catch((error) => {
         errorController.InternalServerError(error, res);
       })
     }
@@ -31,7 +31,7 @@ module.exports = ({ server, db }) => {
   server.put('/lists/', async function (req, res) {
     req.requester = await authController.verifyToken(req, res, db, 'user');
     if (req.requester) {
-      userController.update(req, res, db).catch((error) => {
+      listController.update(req, res, db).catch((error) => {
         errorController.InternalServerError(error, res);
       })
     }
@@ -39,7 +39,7 @@ module.exports = ({ server, db }) => {
   server.del('/list/:id', async function (req, res) {
     req.requester = await authController.verifyToken(req, res, db, 'user');
     if (req.requester) {
-      userController.delete(req, res, db).catch((error) => {
+      listController.delete(req, res, db).catch((error) => {
         errorController.InternalServerError(error, res);
       })
     }
@@ -49,7 +49,7 @@ module.exports = ({ server, db }) => {
   server.post('/lists/:id/item/', async function (req, res) {
     req.requester = await authController.verifyToken(req, res, db, 'user');
     if (req.requester) {
-      userController.addItem(req, res, db).catch((error) => {
+      listController.addItem(req, res, db).catch((error) => {
         errorController.InternalServerError(error, res);
       })
     }
@@ -57,7 +57,7 @@ module.exports = ({ server, db }) => {
   server.put('/lists/:id/item/', async function (req, res) {
     req.requester = await authController.verifyToken(req, res, db, 'user');
     if (req.requester) {
-      userController.updateItem(req, res, db).catch((error) => {
+      listController.updateItem(req, res, db).catch((error) => {
         errorController.InternalServerError(error, res);
       })
     }
@@ -65,7 +65,7 @@ module.exports = ({ server, db }) => {
   server.del('/list/:id/item/:item_id', async function (req, res) {
     req.requester = await authController.verifyToken(req, res, db, 'user');
     if (req.requester) {
-      userController.delete(req, res, db).catch((error) => {
+      listController.delete(req, res, db).catch((error) => {
         errorController.InternalServerError(error, res);
       })
     }
