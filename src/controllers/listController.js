@@ -24,8 +24,9 @@ module.exports = {
     let data = req?.body;
     data.user_id = ownerId;
 
-    const insertedItem = await db('list').insert(data);
+    const [itemId] = await db('list').insert(data);
 
+    const insertedItem = await db('list').where({ id: itemId }).first();
 
     res.send(201, { ...insertedItem });
   },
