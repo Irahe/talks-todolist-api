@@ -65,7 +65,7 @@ module.exports = ({ server, db }) => {
   server.del('/list/:id/item/:item_id', async function (req, res) {
     req.requester = await authController.verifyToken(req, res, db, 'user');
     if (req.requester) {
-      listController.delete(req, res, db).catch((error) => {
+      listController.removeItem(req, res, db).catch((error) => {
         errorController.InternalServerError(error, res);
       })
     }
