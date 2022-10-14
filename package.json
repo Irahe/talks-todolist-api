@@ -4,8 +4,8 @@
   "description": "API para servir items da todolist",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js",
-    "test": "jest"
+    "dev": "nodemon start.js",
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -30,7 +30,8 @@
     "restify": "^8.6.1",
     "restify-cors-middleware": "^1.1.1",
     "sha1": "^1.1.1",
-    "sqlite3": "^5.0.11"
+    "sqlite3": "^5.0.11",
+    "supertest": "^6.3.0"
   },
   "devDependencies": {
     "jest": "^29.0.2",
